@@ -8,6 +8,8 @@ const logger = require('morgan');
 const testJwtRouter = require("./controllers/test-jwt")
 const authRoutes = require("./controllers/auth.routes")
 const verifyToken = require("./middleware/verify-token")
+const personRoute = require('./controllers/person')
+
 
 const productsController = require("./controllers/product");
 
@@ -27,8 +29,10 @@ app.use(logger('dev'));
 // Routes go here
 app.use("/auth",authRoutes)
 app.use("/test-jwt",verifyToken,testJwtRouter)
+app.use("/persons", personRoute)
 app.use("/products", productsController);
-app.use("/adress",AddressControllers)
+app.use("/address",AddressControllers)
+
 
 
 
