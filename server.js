@@ -11,6 +11,11 @@ const verifyToken = require("./middleware/verify-token")
 const personRoute = require('./controllers/person')
 
 
+const productsController = require("./controllers/product");
+
+const AddressControllers = require('./controllers/address');
+const router = require("express").Router();
+
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('connected', () => {
@@ -23,9 +28,11 @@ app.use(logger('dev'));
 
 // Routes go here
 app.use("/auth",authRoutes)
-
 app.use("/test-jwt",verifyToken,testJwtRouter)
 app.use("/persons", personRoute)
+app.use("/products", productsController);
+app.use("/address",AddressControllers)
+
 
 
 
