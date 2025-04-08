@@ -24,8 +24,11 @@ app.use(logger('dev'));
 // Routes go here
 app.use("/auth",authRoutes)
 
-app.use("/test-jwt",verifyToken,testJwtRouter)
+
+
 app.use("/persons", personRoute)
+
+app.use("/test-jwt",verifyToken,testJwtRouter)
 
 
 
