@@ -30,7 +30,7 @@ const userSchema = new Schema({
         required:[true,"Password is Required"]
     },
     cart: [{
-        product: {type:mangoose.Schema.Type.ObjectId, ref:"Product"},
+        product: {type:Schema.Types.ObjectId, ref:"Product"},
         quantity: {type:Number, default:1},
     }]
   

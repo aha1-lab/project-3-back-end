@@ -1,8 +1,5 @@
 const User = require('../models/User')
 const router = require('express').Router()
-const verifyToken = require("../middleware/verify-token")
-
-
 
 
 router.get("/", async(req,res)=>{

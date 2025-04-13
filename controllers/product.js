@@ -45,7 +45,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", upload.single("file"), async (req, res) => {
   try {
-    if (req.user.userType === "seller") {
+    if (req.user.mode === "seller") {
       req.body.seller = req.user._id;
       req.body.image = req.file.path;
       const newProduct = await Product.create(req.body);

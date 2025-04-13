@@ -22,6 +22,7 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+app.use('/uploads',express.static('uploads'));
 app.use(cors());
 app.use(express.json());
 app.use(logger('dev'));
@@ -29,12 +30,11 @@ app.use(logger('dev'));
 // Routes go here
 app.use("/auth",authRoutes)
 
-app.use("/persons", personRoute)
-app.use("/products", productsController);
-app.use("/address",AddressControllers)
+app.use("/persons", personRoute);
+app.use("/products",verifyToken, productsController);
+app.use("/address", verifyToken, AddressControllers);
 
-
-app.use("/test-jwt",verifyToken,testJwtRouter)
+app.use("/test-jwt",verifyToken,testJwtRouter);
 
 
 
