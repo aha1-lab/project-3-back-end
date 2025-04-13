@@ -28,7 +28,11 @@ const userSchema = new Schema({
     hashedPassword:{
         type:String,
         required:[true,"Password is Required"]
-    }
+    },
+    cart: [{
+        product: {type:mangoose.Schema.Type.ObjectId, ref:"Product"},
+        quantity: {type:Number, default:1},
+    }]
   
 })
 
