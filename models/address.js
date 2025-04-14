@@ -17,7 +17,6 @@ const AddressSchema = mongoose.Schema({
         type:String,
         required: true,
     },
-
     mobilePhone:{
         type:Number,
         required: true,
