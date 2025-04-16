@@ -64,7 +64,7 @@ router.put("/:cartProductId", async(req, res)=>{
     }
 });
 
-router.delete("/:cartProductId", async(req, res)=>{
+router.delete("/oneItem/:cartProductId", async(req, res)=>{
     try {
         const findPerson = await User.findById(req.user._id);
         if(!findPerson){
@@ -72,6 +72,26 @@ router.delete("/:cartProductId", async(req, res)=>{
             throw new Error('Could not find this id');
         }
         findPerson.cart.remove({_id:req.params.cartProductId});
+        await findPerson.save();
+        findPerson._doc.user = req.user;
+        res.status(200).json(findPerson);
+    } catch (error) {
+        if(res.statusCode === 404){
+            res.json({err:error.message});
+        }else{
+            res.status(500).json({err:error.message})
+        }
+    }
+});
+
+router.delete("/all", async(req, res)=>{
+    try {
+        const findPerson = await User.findById(req.user._id);
+        if(!findPerson){
+            res.status(404);
+            throw new Error('Could not find this id');
+        }
+        findPerson.cart = [];
         await findPerson.save();
         findPerson._doc.user = req.user;
         res.status(200).json(findPerson);
