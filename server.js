@@ -13,7 +13,7 @@ const personRoute = require('./controllers/person')
 
 const productsController = require("./controllers/product");
 const cartController = require("./controllers/cart");
-
+const orderController = require("./controllers/order");
 const AddressControllers = require('./controllers/address');
 const router = require("express").Router();
 
@@ -35,6 +35,7 @@ app.use("/persons", personRoute);
 app.use("/products",verifyToken, productsController);
 app.use("/address", verifyToken, AddressControllers);
 app.use("/cart",verifyToken, cartController);
+app.use("/orders",verifyToken, orderController);
 app.use("/test-jwt",verifyToken,testJwtRouter);
 
 
